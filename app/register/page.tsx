@@ -5,7 +5,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import Swal from 'sweetalert2'
-import { Button } from '../components/button'
+import { Button } from '../components/Button'
 
 const Register = () => {
   const [name, setName] = useState('')
@@ -21,7 +21,8 @@ const Register = () => {
     axios.post('http://localhost:3930/users', {name, lastName, email, password}).then((res) => {
       Swal.fire('Success', 'User registered successfully', 'success')
       router.push('/')
-    }). catch((err) => {
+    }).catch((err) => {
+      Swal.fire('Error', 'Register Error. Please try again', 'error')
       console.log(err.message)
     })
   }
@@ -53,7 +54,7 @@ const Register = () => {
                 <Button text='Register' type='submit' className='btn-primary'/>          
             </form>
             <div className='mt-3'>
-              <Link href="/login">
+              <Link href="/login" className='text-body-secondary'>
                   <p>You already have an account? Log In here</p>
               </Link>
             </div>

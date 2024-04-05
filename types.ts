@@ -2,7 +2,8 @@ export type ButtonProps = {
     type: "submit" | "button" | "reset" | undefined,
     text: string,
     className: string,
-    onClick?: () => void
+    onClick?: () => void,
+    icon?: React.JSX.Element
 }
 
 export type InputProps = {
@@ -11,4 +12,10 @@ export type InputProps = {
     className: string,
     ariaDescribedby?: string,
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+export type LayoutProps = {
+    lang: string,
+    children: React.ReactNode,
+    className: string
 }

@@ -44,6 +44,8 @@ const Login = () => {
     })  
   }
 
+  const handlePasswordChange = () => {}
+
   return (
     <>
       <div className="d-flex justify-content-center align-items-center" style={{height: "calc(100vh - 56px)"}}>
@@ -60,10 +62,15 @@ const Login = () => {
                 <label htmlFor="loginPass" className="form-label">Password</label>
                 <Input type="password" id="loginPass" className="form-control" onChange={(e) => setPassword(e.target.value)} />
               </div>
-              <Button text='Log In' type='submit' className='btn-primary'/>
+              <div className="mb-3 d-flex align-items-center">
+                <Button text='Log In' type='submit' className='btn-primary'/>
+                <Link href="/resetPassword" className='ms-3 mt-2'>
+                  <p>Forgot your password? Click here</p>            
+                </Link>
+              </div>
             </form>
             <div className='mt-3'>
-              <Link href="/register">
+              <Link href="/register" className='text-body-secondary'>
                   <p>Don&apos;t you have an account yet? Sign Up here</p>
               </Link>
             </div>

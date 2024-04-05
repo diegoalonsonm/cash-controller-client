@@ -49,8 +49,8 @@ export default function Home() {
             <Button text="Logout" className="btn-danger" type="button" onClick={handleDelete} />
           </div>
         ) : (
-          <div>
-            Loading...
+          <div className="d-flex justify-content-center align-items-center vh-100">
+            <p className="h2">Loading...</p>
           </div>
         )
       }
