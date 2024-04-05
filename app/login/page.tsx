@@ -14,19 +14,34 @@ const Login = () => {
 
   const router = useRouter()
 
+  axios.defaults.withCredentials = true
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    axios.post('http://localhost:3930/login', {email, password}).then((res) => {
-      if (res.data.Status === 'Success') {
-        Swal.fire('Success', 'Welcome to Cash Controller', 'success')
+    axios.post('http://localhost:3930/login', { email, password }).then((res) => {
+      if (res.data) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Login successful',
+          text: 'Welcome to Cash Controller'
+        })
         router.push('/')
       } else {
-        Swal.fire('Error', 'You entered invalid credentials, try again', 'error')
-      }
-    }). catch((err) => {
-      console.log(err.message)
-    })
+        Swal.fire({
+          icon: 'error',
+          title: 'Invalid credentials',
+          text: 'Please check your email and password and try again.'
+        })
+      } 
+    }) 
+    .catch((err) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid credentials',
+        text: 'Please check your email and password and try again.'
+      })
+    })  
   }
 
   return (

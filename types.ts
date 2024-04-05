@@ -1,7 +1,8 @@
 export type ButtonProps = {
     type: "submit" | "button" | "reset" | undefined,
     text: string,
-    className: string
+    className: string,
+    onClick?: () => void
 }
 
 export type InputProps = {
