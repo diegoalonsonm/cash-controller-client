@@ -27,6 +27,7 @@ const Login = () => {
           text: 'Welcome to Cash Controller'
         })
         router.push('/')
+        localStorage.setItem('email', email)
       } else {
         Swal.fire({
           icon: 'error',

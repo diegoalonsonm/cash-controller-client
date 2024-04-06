@@ -3,6 +3,10 @@ import { Button } from './Button'
 import LogoutIcon from './Icons/LogoutIcon'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import Link from 'next/link'
+import { HomeIcon } from './Icons/HomeIcon'
+import { StatsIcon } from './Icons/StatsIcon'
+import { ProfileIcon } from './Icons/ProfileIcon'
 
 export const Navbar = () => {
   const handleDelete = () => {
@@ -35,9 +39,11 @@ export const Navbar = () => {
   }
 
   return (
-  <nav className="navbar bg-body-tertiary">
+  <nav className="navbar bg-body-tertiary mx-md-5">
     <div className="container-fluid">
-      <a className="navbar-brand" href="#">Offcanvas navbar</a>
+      <Link href="/" className='navbar-brand'>
+        Cash Controller
+      </Link>
       <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
@@ -48,25 +54,15 @@ export const Navbar = () => {
         </div>
         <div className="offcanvas-body">
           <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Link</a>
-            </li>
-            <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#">Action</a></li>
-                <li><a className="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <hr className="dropdown-divider"/>
-                </li>
-                <li><a className="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
+            <Link href="/" className='nav-item text-secondary text-decoration-none'>
+              <p>Home <HomeIcon /> </p>
+            </Link>
+            <Link href="/stats" className='nav-item text-secondary text-decoration-none'>
+              <p>Stats <StatsIcon /> </p>
+            </Link>
+            <Link href="/profile" className='nav-item text-secondary text-decoration-none'>
+              <p>My Profile <ProfileIcon /> </p>
+            </Link>
           </ul>
           <div>
             <Button text="Logout" className="btn-danger" type="button" onClick={handleDelete} icon={<LogoutIcon/>} />

@@ -1,18 +1,20 @@
 'use client'
 
-import { useState, useEffect } from "react";
-import { Button } from "./components/Button";
+import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import Swal from "sweetalert2";
 
 export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [balance, setBalance] = useState(10.2);
   const router = useRouter();
-
+  
   axios.defaults.withCredentials = true;
-
+  
   useEffect(() => {
+    const email = localStorage.getItem('email')
+    console.log(email)
+
     axios.get('http://localhost:3930/').then((res) => {
       if (res.status === 401) {
         setIsAuthenticated(false)
@@ -25,28 +27,21 @@ export default function Home() {
       setIsAuthenticated(false)
       router.push('/login')
     })
-  }, [router])
 
-  const handleDelete = () => {
-    axios.get('http://localhost:3930/logout').then((res) => {
-      location.reload()
-      Swal.fire({
-        icon: 'success',
-        title: 'Logged out successfully',
-        text: 'Thanks for using Cash Controller!'
-      })
+    axios.get(`http://localhost:3930/users/balance/${email}`).then((res) => {
+      setBalance(res.data[0].availableBudget)
     }).catch((err) => {
       console.log(err)
     })
-  }
+  }, [router])
 
   return (
     <main className="container">
       {
         isAuthenticated ? (
-          <div>
-            <h3>Welcome to Cash Controller!</h3>
-            <Button text="Logout" className="btn-danger" type="button" onClick={handleDelete} />
+          <div className="mx-auto text-center mt-5" style={{ maxWidth: '600px' }}>
+            <h1>This month&apos;s balance</h1>
+            <p className={`${balance > 0 ? 'text-success' : 'text-danger'} mt-4 h2`}>$ {balance}</p>
           </div>
         ) : (
           <div className="d-flex justify-content-center align-items-center vh-100">
