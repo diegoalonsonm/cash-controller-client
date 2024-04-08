@@ -13,7 +13,6 @@ export default function Home() {
   
   useEffect(() => {
     const email = localStorage.getItem('email')
-    console.log(email)
 
     axios.get('http://localhost:3930/').then((res) => {
       if (res.status === 401) {

@@ -33,12 +33,12 @@ const ResetPassword = () => {
                     title: 'Email recieved!',
                     text: 'Your password will be sent to your email. Remember to check all your folders!'
                 })
-                axios.post('http://localhost:3930/users/recovery', email).then((res) => {
-                  location.reload()                  
+                axios.post('http://localhost:3930/users/recovery', {email}).then((res) => {
+                  router.push('/login')              
                 }).catch((err) => {
+                  Swal.fire('Error', 'An error has occured. Please try again', 'error')
                   console.log(err.response)
                 })
-                router.push('/login')
             }
         })
     }
@@ -53,8 +53,8 @@ const ResetPassword = () => {
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="resetPassEmail" className="form-label">Email address</label>
-                    <Input type='email' className='form-control' id='resetPassEmail' aria-describedby='emailHelp'
-                        onChange={(e) => setEmail(e.target.value)} />
+                    <input type="email" className="form-control" id="resetPassEmail" aria-describedby="emailHelp"
+                      onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <Button text='Submit email' type='submit' className='btn-primary'/>          
             </form>
