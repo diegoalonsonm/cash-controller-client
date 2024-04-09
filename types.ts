@@ -19,3 +19,10 @@ export type LayoutProps = {
     children: React.ReactNode,
     className: string
 }
+
+export type IncomeExpenseProps = {
+    amount: number,
+    description: string,
+    date: string,
+    category: number
+}

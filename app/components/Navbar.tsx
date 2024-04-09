@@ -1,12 +1,9 @@
 import React from 'react'
 import { Button } from './Button'
-import LogoutIcon from './Icons/LogoutIcon'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import Link from 'next/link'
-import { HomeIcon } from './Icons/HomeIcon'
-import { StatsIcon } from './Icons/StatsIcon'
-import { ProfileIcon } from './Icons/ProfileIcon'
+import { IconLogout, IconUserCircle, IconChartBar, IconHome } from '@tabler/icons-react'
 
 export const Navbar = () => {
   const handleDelete = () => {
@@ -49,23 +46,23 @@ export const Navbar = () => {
       </button>
       <div className="offcanvas offcanvas-end" tabIndex={-1} id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div className="offcanvas-header">
-          <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+          <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Cash Controller</h5>
           <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div className="offcanvas-body">
           <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
             <Link href="/" className='nav-item text-secondary text-decoration-none'>
-              <p>Home <HomeIcon /> </p>
+              <p>Home <IconHome size={20} className='mb-1' /> </p>
             </Link>
             <Link href="/stats" className='nav-item text-secondary text-decoration-none'>
-              <p>Stats <StatsIcon /> </p>
+              <p>Stats <IconChartBar size={20} className='mb-1' /> </p>
             </Link>
             <Link href="/profile" className='nav-item text-secondary text-decoration-none'>
-              <p>My Profile <ProfileIcon /> </p>
+              <p>My Profile <IconUserCircle size={20} className='mb-1' /> </p>
             </Link>
           </ul>
           <div>
-            <Button text="Logout" className="btn-danger" type="button" onClick={handleDelete} icon={<LogoutIcon/>} />
+            <Button text="Logout" className="btn-danger" type="button" onClick={handleDelete} icon={<IconLogout size={20} className='mb-1'/>} />
           </div>
         </div>
       </div>

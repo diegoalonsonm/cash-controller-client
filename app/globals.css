@@ -9,5 +9,14 @@ body {
     .width-50 {
         width: 90%;
     }
+
+    .profilePic {
+        width: 100px !important;
+        height: 100px !important;
+    }
 }
 
+.profilePic {
+    width: 200px;
+    height: 200px;
+}
