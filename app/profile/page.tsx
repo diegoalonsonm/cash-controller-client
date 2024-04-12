@@ -5,6 +5,7 @@ import picPlaceholder from '../assets/picPlaceholder.webp'
 import { useState } from "react"
 import { Button } from "../components/Button"
 import axios from "axios"
+import Link from "next/link"
 
 const Profile = () => {
   const [name, setName] = useState('')
@@ -58,7 +59,9 @@ const Profile = () => {
       </div>
       <div className="row mt-4">
         <div className="col d-flex justify-content-center align-items-center">
-          <Button type="button" className="btn-info w-50" text="Edit Info" />
+          <Link className="btn btn-info text-white w-50" href="/profile/edit">
+            Edit info
+          </Link>
         </div>
       </div>
     </div>
