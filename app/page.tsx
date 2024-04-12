@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import IncomeExpenseCard from "./components/IncomeExpenseCard";
-import { Button } from "./components/Button";
+import Link from "next/link";
 
 export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -37,13 +37,13 @@ export default function Home() {
       console.log(err)
     })
 
-    axios.get(`http://localhost:3930/expenses/${email}`).then((res) => {
+    axios.get(`http://localhost:3930/expenses/lastFive/${email}`).then((res) => {
       setExpenses(res.data)
     }).catch((err) => {
       console.log(err)
     })
 
-    axios.get(`http://localhost:3930/incomes/${email}`).then((res) => {
+    axios.get(`http://localhost:3930/incomes/lastFive/${email}`).then((res) => {
       setIncomes(res.data)
     }).catch((err) => {
       console.log(err)
@@ -54,13 +54,13 @@ export default function Home() {
     <main className="container">
       {
         isAuthenticated ? (
-          <div className="mx-auto text-center mt-5">
+          <div className="mx-auto text-center my-5">
             <h1>Your balance</h1>
-            <p className={`${balance >= 0 ? 'text-success' : 'text-danger'} mt-4 h2`}>$ {balance}</p>
+            <p className={`${balance >= 0 ? 'text-success' : 'text-danger'} mt-4 h2`}>$ {balance.toFixed(2)}</p>
               <div className="row">
                 <div className="col-12 col-md-6">
                   <h4 className="mt-5 mb-3">
-                    Your expenses
+                    Your last 5 expenses
                   </h4>
                   <div>
                     {expenses.map((expense: { id: string, description: string, categoryId: number, amount: number, date: string }) => (
@@ -73,11 +73,16 @@ export default function Home() {
                       />
                     ))}
                   </div>
-                  <Button type="button" className="btn-info" text="Add new expense" />
+                  <Link className="btn btn-info text-white" href="/expense">
+                    Add new expense
+                  </Link>
+                  <Link className="btn btn-secondary ms-2" href="/expense/all">
+                    View all expenses
+                  </Link>
                 </div>
                 <div className="col-12 col-md-6">
                   <h4 className="mt-5 mb-3">
-                    Your incomes
+                    Your last 5 incomes
                   </h4>
                   <div>
                     {incomes.map((income: { id: string, description: string, categoryId: number, amount: number, date: string }) => (
@@ -90,7 +95,12 @@ export default function Home() {
                       />
                     ))}
                   </div>
-                  <Button type="button" className="btn-info" text="Add new income" />
+                  <Link className="btn btn-info text-white" href="/income">
+                    Add new income
+                  </Link>
+                  <Link className="btn btn-secondary ms-2" href="/income/all">
+                    View all incomes
+                  </Link>
                 </div>
               </div>
             </div>                    

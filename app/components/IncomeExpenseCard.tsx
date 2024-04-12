@@ -27,13 +27,16 @@ export default function IncomeExpenseCard({ description, amount, date, category 
   return (
     <div className="container border-2 border-dark-subtle border-top">
       <div className="row my-3">
-        <div className="col-auto">
+        <div className="col text-start">
           <div className="d-flex">
-            {getIcon()}
+            <div className="">    
+              {getIcon()}
+            </div>
             <p className='ms-2 mt-1 mb-0 fs-5'>
               {description}
             </p>
-          </div>
+          </div>        
+          <span className='text-muted' style={{fontSize: '14px'}}>{date}</span>
         </div>
         <div className="col text-end">
           <p className='fs-5'>

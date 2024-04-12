@@ -22,6 +22,7 @@ export const Navbar = () => {
           title: 'Logged out successfully',
           text: 'Thanks for using Cash Controller!'
         })
+        localStorage.removeItem('email')
         setTimeout(() => {        
           if (result.isConfirmed) {
             axios.get('http://localhost:3930/logout').then((res) => {
