@@ -21,9 +21,16 @@ const Register = () => {
     axios.post('http://localhost:3930/users', {name, lastName, email, password}).then((res) => {
       Swal.fire('Success', 'User registered successfully', 'success')
       router.push('/')
-    }).catch((err) => {
-      Swal.fire('Error', 'Register Error. Please try again', 'error')
-      console.log(err.message)
+    }).catch((err): void => {
+      if (err.response.status === 409) {
+        Swal.fire('User already exists', 'Try using a new email', 'error')
+        console.log(err.message)
+        return
+      } else {
+        Swal.fire('Error', 'An error occurred', 'error')
+        console.log(err.message)
+        return
+      }
     })
   }
 
