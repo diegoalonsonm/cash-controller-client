@@ -18,7 +18,7 @@ const Register = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    axios.post('http://localhost:3930/users', {name, lastName, email, password}).then((res) => {
+    axios.post('https://cash-controller-server.onrender.com/users', {name, lastName, email, password}).then((res) => {
       Swal.fire('Success', 'User registered successfully', 'success')
       router.push('/')
     }).catch((err): void => {

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Cash Controller",
   description: "The best way for you to have control over your money.",
   keywords: "cash, controller, money, control, finance, budget, expenses, savings",
-  manifest: "/manifest.json",
+  // manifest: "/manifest.json",
   icons: {
     apple: "/icon.png",
   }

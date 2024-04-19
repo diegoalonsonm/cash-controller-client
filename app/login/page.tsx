@@ -19,7 +19,7 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    axios.post('http://localhost:3930/login', { email, password }).then((res) => {
+    axios.post('https://cash-controller-server.onrender.com/login', { email, password }).then((res) => {
       if (res.data) {
         Swal.fire({
           icon: 'success',

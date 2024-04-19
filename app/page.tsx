@@ -18,7 +18,7 @@ export default function Home() {
   useEffect(() => {
     const email = localStorage.getItem('email')
 
-    axios.get('http://localhost:3930/').then((res) => {
+    axios.get('https://cash-controller-server.onrender.com/').then((res) => {
       if (res.status === 401) {
         setIsAuthenticated(false)
         router.push('/login')
@@ -31,19 +31,19 @@ export default function Home() {
       router.push('/login')
     })
 
-    axios.get(`http://localhost:3930/users/balance/${email}`).then((res) => {
+    axios.get(`https://cash-controller-server.onrender.com/users/balance/${email}`).then((res) => {
       setBalance(res.data)
     }).catch((err) => {
       console.log(err)
     })
 
-    axios.get(`http://localhost:3930/expenses/lastFive/${email}`).then((res) => {
+    axios.get(`https://cash-controller-server.onrender.com/expenses/lastFive/${email}`).then((res) => {
       setExpenses(res.data)
     }).catch((err) => {
       console.log(err)
     })
 
-    axios.get(`http://localhost:3930/incomes/lastFive/${email}`).then((res) => {
+    axios.get(`https://cash-controller-server.onrender.com/incomes/lastFive/${email}`).then((res) => {
       setIncomes(res.data)
     }).catch((err) => {
       console.log(err)
