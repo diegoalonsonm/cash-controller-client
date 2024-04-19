@@ -18,7 +18,7 @@ const Profile = () => {
     email = localStorage.getItem('email') ?? ''
   }
 
-  axios.get(`http://localhost:3930/users/${email}`).then((res) => {
+  axios.get(`https://cash-controller-server.onrender.com/users/${email}`).then((res) => {
     setName(res.data[0].name)
     setLastName(res.data[0].lastName)
   }).catch((err) => {

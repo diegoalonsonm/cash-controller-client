@@ -23,7 +23,7 @@ const Expense = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     
-    axios.post('http://localhost:3930/expenses', data).then((res) => {
+    axios.post('https://cash-controller-server.onrender.com/expenses', data).then((res) => {
       if (res.data) {
         Swal.fire({
           icon: 'success',

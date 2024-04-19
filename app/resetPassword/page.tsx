@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { Button } from '../components/Button'
-import { Input } from '../components/Input'
 import Swal from 'sweetalert2'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
@@ -33,7 +32,7 @@ const ResetPassword = () => {
                     title: 'Email recieved!',
                     text: 'Your password will be sent to your email. Remember to check all your folders!'
                 })
-                axios.post('http://localhost:3930/users/recovery', {email}).then((res) => {
+                axios.post('https://cash-controller-server.onrender.com/users/recovery', {email}).then((res) => {
                   router.push('/login')              
                 }).catch((err) => {
                   Swal.fire('Error', 'An error has occured. Please try again', 'error')

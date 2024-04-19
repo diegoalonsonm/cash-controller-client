@@ -29,7 +29,7 @@ const Income = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     
-    axios.post('http://localhost:3930/incomes', data).then((res) => {
+    axios.post('https://cash-controller-server.onrender.com/incomes', data).then((res) => {
       if (res.data) {
         cleanInputs()
         Swal.fire({

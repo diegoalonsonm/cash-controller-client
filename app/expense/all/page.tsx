@@ -13,13 +13,13 @@ const AllExpenses = () => {
     useEffect(() => {
         const email = localStorage.getItem('email')
 
-        axios.get(`http://localhost:3930/expenses/${email}`).then((res) => {
+        axios.get(`https://cash-controller-server.onrender.com/expenses/${email}`).then((res) => {
             setExpenses(res.data)
         }).catch((err) => {
             console.log(err)
         })
 
-        axios.get(`http://localhost:3930/expenses/totalAmount/${email}`).then((res) => {
+        axios.get(`https://cash-controller-server.onrender.com/expenses/totalAmount/${email}`).then((res) => {
             setAmount(res.data[0].totalAmount)
         }).catch((err) => {
             console.log(err)

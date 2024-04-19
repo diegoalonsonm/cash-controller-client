@@ -16,13 +16,13 @@ const AllIncomes = () => {
     useEffect(() => {
         const email = localStorage.getItem('email')
 
-        axios.get(`http://localhost:3930/incomes/${email}`).then((res) => {
+        axios.get(`https://cash-controller-server.onrender.com/incomes/${email}`).then((res) => {
             setIncomes(res.data)
         }).catch((err) => {
             console.log(err)
         })
 
-        axios.get(`http://localhost:3930/incomes/total/${email}`).then((res) => {
+        axios.get(`https://cash-controller-server.onrender.com/incomes/total/${email}`).then((res) => {
             setAmount(res.data[0].totalAmount)
         }).catch((err) => {
             console.log(err)

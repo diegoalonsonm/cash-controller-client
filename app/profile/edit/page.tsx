@@ -23,7 +23,7 @@ const EditPage = () => {
     const data = {nameData, lastNameData, passwordData, email}
     
     useEffect(() => {
-        axios.get(`http://localhost:3930/users/${email}`).then(res => {
+        axios.get(`https://cash-controller-server.onrender.com/users/${email}`).then(res => {
             setNameInput(res.data[0].name)
             setLastNameInput(res.data[0].lastName)
             setPasswordInput(res.data[0].password)
@@ -56,7 +56,7 @@ const EditPage = () => {
             setLastNameData(lastNameInput)
         }
 
-        axios.put(`http://localhost:3930/users/${email}`, data).then(res => {
+        axios.put(`https://cash-controller-server.onrender.com/users/${email}`, data).then(res => {
             Swal.fire({
                 icon: 'success',
                 title: 'Success',
