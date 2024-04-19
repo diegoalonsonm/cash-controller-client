@@ -8,8 +8,6 @@ import Link from "next/link"
 const AllIncomes = () => {
     const [incomes, setIncomes] = useState([])
     const [amount, setAmount] = useState(0.0)
-    
-    const email = localStorage.getItem('email')
 
     axios.defaults.withCredentials = true
 
