@@ -14,7 +14,11 @@ const EditPage = () => {
     const [lastNameData, setLastNameData] = useState('')
     const [passwordData, setPasswordData] = useState('')
 
-    const email = localStorage.getItem('email')
+    var email = ''
+
+    if (typeof window !== 'undefined') {
+        email = localStorage.getItem('email') ?? ''
+    }
 
     const data = {nameData, lastNameData, passwordData, email}
     

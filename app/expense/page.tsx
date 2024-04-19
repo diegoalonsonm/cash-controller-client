@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '../components/Button'
 import axios from 'axios'
 import Swal from 'sweetalert2'
@@ -10,7 +10,11 @@ const Expense = () => {
   const [description, setDescription] = useState('')
   const [amount, setAmount] = useState(0.0)
   const [category, setCategory] = useState(0)
-  const email = localStorage.getItem('email')
+  var email = ''
+
+  if (typeof window !== 'undefined') {
+    email = localStorage.getItem('email') ?? ''
+  }
 
   const data = {description, amount, category, email}
 

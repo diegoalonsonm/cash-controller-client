@@ -12,7 +12,11 @@ const Profile = () => {
   const [lastName, setLastName] = useState('')
   const [password, setPassword] = useState('')
 
-  const email = localStorage.getItem('email') || ""
+  var email = ''
+
+  if (typeof window !== 'undefined') {
+    email = localStorage.getItem('email') ?? ''
+  }
 
   axios.get(`http://localhost:3930/users/${email}`).then((res) => {
     setName(res.data[0].name)
