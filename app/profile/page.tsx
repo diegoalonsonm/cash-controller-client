@@ -3,7 +3,6 @@
 import Image from "next/image"
 import picPlaceholder from '../assets/picPlaceholder.webp'
 import { useState } from "react"
-import { Button } from "../components/Button"
 import axios from "axios"
 import Link from "next/link"
 

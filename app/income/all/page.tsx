@@ -3,13 +3,10 @@
 import { useEffect, useState } from 'react'
 import axios from "axios"
 import IncomeExpenseCard from "../../components/IncomeExpenseCard"
-import Link from "next/link"
 
 const AllIncomes = () => {
     const [incomes, setIncomes] = useState([])
-    const [amount, setAmount] = useState(0.0)
-    
-    const email = localStorage.getItem('email')
+    const [amount, setAmount] = useState(0.0)    
 
     axios.defaults.withCredentials = true
 
