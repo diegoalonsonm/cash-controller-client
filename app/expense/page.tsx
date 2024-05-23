@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '../components/Button'
 import axios from 'axios'
 import Swal from 'sweetalert2'
@@ -10,15 +10,21 @@ const Expense = () => {
   const [description, setDescription] = useState('')
   const [amount, setAmount] = useState(0.0)
   const [category, setCategory] = useState(0)
-  const email = localStorage.getItem('email')
-
-  const data = {description, amount, category, email}
 
   const router = useRouter()
+  const [email, setEmail] = useState(localStorage.getItem('email') || "")
+
+  useEffect(() => {
+    setEmail(localStorage.getItem('email') || "")
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    
+        
+    const data = { description, amount, category, email }
+
+    console.log(data)
+
     axios.post('http://localhost:3930/expenses', data).then((res) => {
       if (res.data) {
         Swal.fire({

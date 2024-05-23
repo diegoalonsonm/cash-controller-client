@@ -1,23 +1,18 @@
 "use client"
 
-import { useEffect, useState } from 'react'
 import { LineChart } from "../components/LineChart"
 import { BarChart } from "../components/BarChart"
 import { PieChart } from "../components/PieChart"
-import axios from 'axios'
+import { useEffect } from "react"
 
 const Stats = () => {
-  const [incomeData, setIncomeData] = useState([])
-  const [expensesData, setExpensesData] = useState([])
-  
+
   useEffect(() => {
     const display = document.getElementById('display') as HTMLSelectElement
     const line = document.getElementById('line')
     const bar = document.getElementById('bar')
     const pie = document.getElementById('pie')
     const text = document.getElementById('text')
-
-    const email = localStorage.getItem('email') || ""
 
     display.addEventListener('change', () => {
       const value = display.value
@@ -44,18 +39,6 @@ const Stats = () => {
       }
     })
 
-    axios.get(`http://localhost:3930/incomes/monthlyIncome/${email}`).then((res) => {
-      setIncomeData(res.data)
-    }).catch((err) => {
-      console.log(err)
-    })
-
-    axios.get(`http://localhost:3930/expenses/monthlyExpense/${email}`).then((res) => {
-      setExpensesData(res.data)
-    }).catch((err) => {
-      console.log(err)
-    })
-
   }, [])
 
   return (
@@ -78,14 +61,14 @@ const Stats = () => {
             </div>
             <div id="line" className="d-none w-50">
               <h4 className='fw-normal'>Money In vs Money Out</h4>
-              <LineChart incomeData={incomeData} expenseData={expensesData} /> 
+              <LineChart /> 
             </div>
             <div id="bar" className="d-none w-50">
               <h4 className='fw-normal'>Expenditures by category</h4>
-              <BarChart incomeOrExpenses={true} />
+              <BarChart />
             </div>
             <div id="pie" className="d-none w-50">
-              <h4 className='fw-normal'>Expenditures by category</h4>
+              <h4 className='fw-normal'>All your expenditures</h4>
               <PieChart />
             </div>
           </div>

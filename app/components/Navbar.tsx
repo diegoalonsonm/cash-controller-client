@@ -62,7 +62,7 @@ export const Navbar = () => {
               <p>Stats <IconChartBar size={20} className='mb-1' /> </p>
             </Link>
             <Link href="/profile" className='nav-item text-secondary text-decoration-none'>
-              <p>My Profile <IconUserCircle size={20} className='mb-1' /> </p>
+              <p>Profile <IconUserCircle size={20} className='mb-1' /> </p>
             </Link>
           </ul>
           <div>

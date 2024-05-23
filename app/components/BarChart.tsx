@@ -2,42 +2,47 @@
 
 import { Bar } from "react-chartjs-2"
 import { Chart, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js" 
-import { BarChartProps } from "@/types"
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
-export const BarChart = ( {incomeOrExpenses}: BarChartProps ) => {
-    const options = {
-        responsive: true
-    }
+export const BarChart = () => {  
+  const [top5Categories, setTop5Categories] = useState([])
+  const [top5CategoriesAmount, setTop5CategoriesAmount] = useState([])
 
-    let barChartData = {
-        labels: [],
-        datasets: [
-          {
-            label: "",
-            data: [],
-            backgroundColor: [],
-            borderColor: [],
-            borderWidth: 1
-          }
-        ]
-    }
+  const email = localStorage.getItem('email') || ""
+   
+  useEffect(() => {
+    axios.get(`http://localhost:3930/expenses/top5Categories/${email}`).then((response) => {
+      const categories = response.data.map((item: { description: string }) => item.description)
+      const amounts = response.data.map((item: { totalAmount: number }) => item.totalAmount)
     
-    if (incomeOrExpenses) {
-        barChartData.labels = ["Rent", "Groceries", "Bills", "Entertainment", "Other"] as string[];
-        barChartData.datasets[0].label = "Expenses";
-        barChartData.datasets[0].data = [1200, 500, 200, 300, 100] as number[];
-        barChartData.datasets[0].backgroundColor = ["rgba(255, 99, 132, 0.2"] as string[];
-        barChartData.datasets[0].borderColor = ["rgba(54, 162, 235, 1)"] as string[];
-    } else {
-        barChartData.labels = ["Salary", "investment", "gift", "savings", "loans"] as string[];
-        barChartData.datasets[0].label = "Incomes";
-        barChartData.datasets[0].data = [148, 1300, 200, 300, 100] as number[];
-        barChartData.datasets[0].backgroundColor = ["lightBlue"] as string[];
-    }    
+      setTop5Categories(categories)
+      setTop5CategoriesAmount(amounts)
+    }).catch((error) => {
+      console.log(error)
+    })
+  }, [email])
 
-    return (
-        <Bar options={options} data={barChartData} />
-    )
+  const options = {
+      responsive: true
+  }
+
+  let barChartData = {
+    labels: top5Categories,
+      datasets: [
+        {
+          label: "Expenses",
+          data: top5CategoriesAmount,
+          backgroundColor: ["#ADD8E6"],
+          borderColor: ["#00008B"],
+          borderWidth: 1
+        }
+      ]
+  }   
+
+  return (
+      <Bar options={options} data={barChartData} />
+  )
 }

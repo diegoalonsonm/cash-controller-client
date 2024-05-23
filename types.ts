@@ -26,12 +26,3 @@ export type IncomeExpenseProps = {
     date: string,
     category: number
 }
-
-export type BarChartProps = {
-    incomeOrExpenses: boolean
-}
-
-export type LineChartProps = {
-    incomeData: number[],
-    expenseData: number[]
-}
